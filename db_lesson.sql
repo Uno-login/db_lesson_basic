@@ -17,16 +17,17 @@ ADD
 
 --q3
 INSERT INTO
-  departments (name) VALUES
+  departments (name)
+VALUES
   ('営業'),
   ('開発'),
   ('経理'),
   ('人事'),
   ('情報システム');
 
-  INSERT INTO
-    people (name, email, department_id, age, gender)
-    VALUES
+INSERT INTO
+  people (name, email, department_id, age, gender)
+VALUES
     ('田中 営業一', 'tanaka-eigyo1@example.com', 1, 28, 1),
     ('鈴木 営業二', 'suzuki-eigyo2@example.com', 1, 32, 1),
     ('佐藤 営業三', 'sato-eigyo3@example.com', 1, 35, 2),
@@ -54,23 +55,33 @@ VALUES
 
 --q4
 SELECT
-  * FROM people;
+  *
+FROM
+  people;
 UPDATE
-  people SET department_id = 1
+  people
+SET
+  department_id = 1
 WHERE
   department_id IS NULL;
 
 --q5
 SELECT
-  name, age FROM people
+  name, age
+FROM
+  people
 WHERE
-  gender = 1 ORDER BY age DESC;
+  gender = 1
+ORDER BY
+  age DESC;
 
 -- q6 このSQLは「people」テーブルの中から、「department_id」が1の人に限定して、名前、メールアドレス、年齢の3つのカラム情報を抽出しています。さらに、作成日時（created_at）の順に並べ替えて表示しています。
 
 --q7
 SELECT
-  name FROM people
+  name
+FROM
+  people
 WHERE
   (gender = 2 AND age BETWEEN 20 AND 29)
 AND
@@ -78,19 +89,27 @@ AND
 
 --q8
 SELECT
-  name, age FROM people
+  name, age
+FROM
+  people
 WHERE
-  department_id = 1 ORDER BY age ASC;
+  department_id = 1
+ORDER BY
+  age ASC;
 
 --q9
 SELECT
-  AVG(age) AS 平均年齢 FROM people
+  AVG(age) AS 平均年齢
+FROM
+  people
 WHERE
   department_id = 2 AND gender = 2;
 
 --q10
 SELECT
-  p.name, d.name AS department_name, r.content FROM people p
+  p.name, d.name AS department_name, r.content
+FROM
+  people p
 JOIN
   departments d ON p.department_id = d.department_id
 JOIN
@@ -98,7 +117,9 @@ JOIN
 
 --q11
 SELECT
-  p.name FROM people p
+  p.name
+FROM
+  people p
 LEFT OUTER JOIN
   reports r ON p.person_id = r.person_id
 WHERE
